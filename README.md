@@ -1,7 +1,8 @@
 # artnow
-
+   *"Alexa, ask Art which painting is on the TV?"*
+   
 the companion server for the Picture Slideshow's ***[Remote Notification](https://forum.kodi.tv/showthread.php?tid=154032&pid=2618126#pid2618126)***
-
+     
 ![](doc/artnow_config.png)
 
 ### Description
