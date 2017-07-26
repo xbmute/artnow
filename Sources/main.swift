@@ -8,7 +8,7 @@
 //  Copyright © 2017 xbmute. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 import PerfectLib
 import PerfectHTTP
 import PerfectHTTPServer
@@ -58,7 +58,9 @@ alexa_routes.add(method: .post, uri: "/alexa/artnow") {
     var alexa_start = "{\"version\":\"1.0\",\"response\":{\"directives\":[],\"shouldEndSession\":true,\"outputSpeech\":{\"type\":\"SSML\",\"ssml\":\"<speak>"
     var alexa_end   = "</speak>\"}},\"sessionAttributes\":{}}"
     var alexa_text : String = ""
-    var art_name = ((art_now as NSString).deletingPathExtension as NSString).lastPathComponent
+    var url = URL(string: art_now.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+    var art_name = url!.deletingPathExtension().lastPathComponent
+    print("    sayz: \(art_name)")
     alexa_text = alexa_start + art_name + alexa_end
     resp.setBody(string: alexa_text)
     resp.completed()
@@ -70,7 +72,9 @@ alexa_routes.add(method: .post, uri: "/alexa/artlast") {
     var alexa_start = "{\"version\":\"1.0\",\"response\":{\"directives\":[],\"shouldEndSession\":true,\"outputSpeech\":{\"type\":\"SSML\",\"ssml\":\"<speak>"
     var alexa_end   = "</speak>\"}},\"sessionAttributes\":{}}"
     var alexa_text : String = ""
-    var art_name = ((art_last as NSString).deletingPathExtension as NSString).lastPathComponent
+    var url = URL(string: art_last.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+    var art_name = url!.deletingPathExtension().lastPathComponent
+    print("    sayz last: \(art_name)")
     alexa_text = alexa_start + "before was: " + art_name + alexa_end
     resp.setBody(string: alexa_text)
     resp.completed()
